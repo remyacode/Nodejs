@@ -8,6 +8,7 @@ const requestHandler=(req,res)=>{
         res.write('<br><input type="text" name="message"><button type="submit">Send</button></form></body></html>');
         return res.end();
     }
+    
     if(req.url==="/message" && req.method==="POST"){
         const body=[];
         req.on('data',(chunk)=>{

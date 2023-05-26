@@ -1,0 +1,24 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "complete guide",
+  "main": "NodeAppTut/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon NodeAppTut/app.js",
+    "start-server": "node NodeAppTut/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/remyacode/Nodejs.git"
+  },
+  "author": "Remya C",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/remyacode/Nodejs/issues"
+  },
+  "homepage": "https://github.com/remyacode/Nodejs#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
