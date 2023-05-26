@@ -12,16 +12,38 @@ server.listen(3000);
 //DELIVERABLE
 
 const http=require('http');
+const express=require('express');
 
-const routes=require('/home/remya-c/Desktop/Sharpener Tasks/Node.js/NodeAppTut/route.js');
+const app=express();
 
-//
-const server = http.createServer(routes);
-//const server = http.createServer(routes.handler);
-    //console.log('Remya C');
+//use-to add a new middleware function
+app.use((req, res, next)=>{
+    console.log('IN the middleware')
+    next(); //allows rqst to continue to next middleware in line
+});
+
+app.use((req, res, next)=>{
+    console.log('IN another middleware')
+    res.send('<h1>Hellooo</h1>'); //text/html
+    //res.send({'key1':'value'})//application/json
+});
+
+
+//const routes=require('/home/remya-c/Desktop/Sharpener Tasks/Node.js/NodeAppTut/route.js');
+/*
+const server = http.createServer(app);
 
 
 server.listen(4001);
+//ORRRR
+*/
+
+app.listen(4001);
+//const server = http.createServer(routes);
+//const server = http.createServer(routes.handler);
+//console.log('Remya C');
+
+
     /*
     if(req.url=='/home'){
         //console.log(req.url,req.method,req.header)
