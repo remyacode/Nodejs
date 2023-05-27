@@ -15,10 +15,24 @@ const http=require('http');
 const express=require('express');
 const bodyParser=require('body-parser');
 
+const adminroutes=require('./routes/admin.js')
+const shoproutes=require('./routes/shop.js');
 const app=express();
 
 //use-to add a new middleware function
 app.use(bodyParser.urlencoded({extended: false}));
+
+//order matters
+app.use('/admin',adminroutes);
+app.use('/shop',shoproutes);
+
+
+//404 error
+app.use((req,res,next)=>{
+    res.status(404).send('<h1>Page not Found</h1>');
+});
+
+/*MOVED TO admin.js
 app.use('/add-product',(req, res, next)=>{
     //console.log('IN another middleware')
     res.send('<form action="/product" method ="POST">Name:<input type="text" name="title"><br>Size:<input type="text" name="size" ><br><button type="submit">Add Product</button></form>'); //text/html
@@ -28,14 +42,15 @@ app.post('/product',(req, res,next)=>{
     console.log(req.body);
     res.redirect('/');
 });
-
+*/
+/*MOVED TO shop.js
 app.use('/',(req, res, next)=>{
     //console.log('IN another middleware')
     res.send('<h1>Hellooo</h1>'); //text/html
     //res.send({'key1':'value'})//application/json
 });
 
-
+*/
 //const routes=require('/home/remya-c/Desktop/Sharpener Tasks/Node.js/NodeAppTut/route.js');
 /*
 const server = http.createServer(app);
