@@ -13,17 +13,24 @@ server.listen(3000);
 
 const http=require('http');
 const express=require('express');
+const bodyParser=require('body-parser');
 
 const app=express();
 
 //use-to add a new middleware function
-app.use((req, res, next)=>{
-    console.log('IN the middleware')
-    next(); //allows rqst to continue to next middleware in line
+app.use(bodyParser.urlencoded({extended: false}));
+app.use('/add-product',(req, res, next)=>{
+    //console.log('IN another middleware')
+    res.send('<form action="/product" method ="POST">Name:<input type="text" name="title"><br>Size:<input type="text" name="size" ><br><button type="submit">Add Product</button></form>'); //text/html
+    //res.send({'key1':'value'})//application/json
+});
+app.post('/product',(req, res,next)=>{
+    console.log(req.body);
+    res.redirect('/');
 });
 
-app.use((req, res, next)=>{
-    console.log('IN another middleware')
+app.use('/',(req, res, next)=>{
+    //console.log('IN another middleware')
     res.send('<h1>Hellooo</h1>'); //text/html
     //res.send({'key1':'value'})//application/json
 });
