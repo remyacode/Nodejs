@@ -17,19 +17,21 @@ const bodyParser=require('body-parser');
 
 const adminroutes=require('./routes/admin.js')
 const shoproutes=require('./routes/shop.js');
-const app=express();
+const contactroutes=require('./routes/contact.js');
 
-//use-to add a new middleware function
+const app=express();
+const path=require('path');
+//use-to add a new middleware function-app.use
 app.use(bodyParser.urlencoded({extended: false}));
 
 //order matters
 app.use('/admin',adminroutes);
 app.use('/shop',shoproutes);
-
+app.use('/contactus',contactroutes);
 
 //404 error
 app.use((req,res,next)=>{
-    res.status(404).send('<h1>Page not Found</h1>');
+    res.status(404).sendFile(path.join(__dirname,'views','404.html'));
 });
 
 /*MOVED TO admin.js
@@ -43,6 +45,7 @@ app.post('/product',(req, res,next)=>{
     res.redirect('/');
 });
 */
+
 /*MOVED TO shop.js
 app.use('/',(req, res, next)=>{
     //console.log('IN another middleware')

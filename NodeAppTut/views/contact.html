@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+form{
+text-align:left;
+}
+
+fieldset {
+  background-color: white;
+  margin:0 auto;
+  float: center;
+  border-color: orange;
+  width:700px;
+  height:400px;
+}
+
+body{
+    background-image: url('https://media.istockphoto.com/id/1398473177/photo/questionnaire-with-checkboxes-filling-survey-form-online-answer-questions.jpg?s=2048x2048&w=is&k=20&c=vpGAk3uTMEQGBt13uXf88wFqGiy69Kc6qGV0gRkdsJw=');
+}
+
+h1{
+color:orange;
+text-align:center
+}
+
+p{
+text-align:center
+}
+
+input{
+  margin: 5px;
+  width:650px;
+}
+
+#dat
+{
+width:320px
+}
+
+#sub
+{
+background-color:Orange;
+color:white;
+border-color: antiquewhite;
+font-weight: bold;
+height:50px;
+text-align:center
+}
+
+</style>
+</head>
+<body>
+
+<form action="#" method ="POST" onsubmit="onsignup(event)">
+    <fieldset>
+    <h1>Book a call</h1>
+   <p>Book a call slot and our representative will call you</p>
+   <hr>
+     <label>Name:</label>
+           <br>
+           <input type="text" name="Nname" width="10000px">
+           <br>
+           
+           <label>Email:</label>
+           <br>
+           <input type="text" name="Email" width="10000px">
+           <br>
+   
+           <label>Phone:</label>
+           <br>
+           <input type="text" name="Phone" width="10000px">
+           <br>
+   
+           <label>Time for Call:</label>
+           <br>
+           <input id="dat" type="date" name="date" width="320px">
+           <input id="dat" type="time" name="time" width="320px">
+           <br>
+     <input id="sub" type="submit" value="Get A Call">
+    </fieldset>
+   </form>
+</body>
+</html>
