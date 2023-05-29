@@ -9,6 +9,11 @@ router.get('/',(req, res, next)=>{
     res.sendFile(path.join(__dirname,'../','views','shop.html')); //text/html
     //res.send({'key1':'value'})//application/json
 });
+router.post('/',(req, res, next)=>{
+    //console.log('IN another middleware')
+    res.redirect('/shop'); //text/html
+    //res.send({'key1':'value'})//application/json
+});
 
 
 module.exports=router;

@@ -23,6 +23,7 @@ const app=express();
 const path=require('path');
 //use-to add a new middleware function-app.use
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname,'public')))
 
 //order matters
 app.use('/admin',adminroutes);
