@@ -1,3 +1,19 @@
+const path = require('path');
+
+const express = require('express');
+
+const productsController=require('../controllers/products')
+
+const router = express.Router();
+
+router.get('/', productsController.getProducts);
+
+router.post('/', productsController.postAddProduct);
+
+module.exports = router;
+
+
+/*
 const express=require('express');
 
 const router=express.Router();
@@ -17,3 +33,4 @@ router.post('/',(req, res, next)=>{
 
 
 module.exports=router;
+*/

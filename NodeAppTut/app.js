@@ -21,9 +21,14 @@ const contactroutes=require('./routes/contact.js');
 
 const app=express();
 const path=require('path');
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 //use-to add a new middleware function-app.use
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname,'public')))
+
 
 //order matters
 app.use('/admin',adminroutes);
@@ -31,7 +36,7 @@ app.use('/shop',shoproutes);
 app.use('/contactus',contactroutes);
 
 //404 error
-const errcont= require('./controllers/err.js')
+const errcont= require('./controllers/error.js')
 app.use(errcont.get404);
 
 /*MOVED TO admin.js
