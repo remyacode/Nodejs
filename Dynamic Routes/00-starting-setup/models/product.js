@@ -1,20 +1,49 @@
-/*FOR FILE
+const Sequelize=require('sequelize');
+
+const sequelize=require('../util/database')
+
+const Product = sequelize.define('product',{
+  id:{
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNUll: false,
+    primaryKey: true
+  },
+  title: Sequelize.STRING,
+  price: {
+    type: Sequelize.DOUBLE,
+    allowNUll: false
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
+    allowNUll: false
+  },
+  description: {
+    type: Sequelize.STRING,
+    allowNUll:false
+  }
+})
+
+module.exports=Product;
+
+/*BEFORE SEQUELIZE
+//FOR FILE
 const fs = require('fs');
 const path = require('path');
-*/
+
 //DB
 
 const db= require('../util/database')
 const Cart=require('./cart')
 
-/*
+
 const p = path.join(
   path.dirname(process.mainModule.filename),
   'data',
   'products.json'
 );
-*/
-/*FOR FILE
+
+//FOR FILE
 
 const getProductsFromFile = cb => {
   fs.readFile(p, (err, fileContent) => {
@@ -25,7 +54,6 @@ const getProductsFromFile = cb => {
     }
   });
 };
-*/
 
 module.exports = class Product {
   constructor(id,title, imageUrl, description, price) {
@@ -37,7 +65,7 @@ module.exports = class Product {
   }
 
   save() {
-/*FILE
+//FILE
 
     getProductsFromFile(products => {
       if(this.id){
@@ -55,7 +83,6 @@ module.exports = class Product {
       })}
     })
   
-    */
    //FOR DB
 
    return db.execute('INSERT INTO products (title,price,imageUrl,description) VALUES(?,?,?,?)',
@@ -65,7 +92,7 @@ module.exports = class Product {
   }
 
 static deleteById(id){
-  /* FILE
+  //FILE
   getProductsFromFile(products=>{
     const product =products.find(prod=>prod.id===id)
     const updatedProducts=products.filter(prod=>prod.id !== id);
@@ -77,7 +104,6 @@ static deleteById(id){
     }
     )
   })
-  */
  //FOR DB
 
  return db.execute('DELETE FROM products WHERE products.id=?',[id])
@@ -86,25 +112,26 @@ static deleteById(id){
 }
 
   static fetchAll() {
-    /* FOR FILE
+    //FOR FILE
     getProductsFromFile(cb);
-    */
+    
    //FOR DB
    return db.execute('SELECT * FROM products')
    
   }
 
   static findbyId(id){
-    /*FILE
+    //FILE
     getProductsFromFile(products=>{
       const product=products.find(p=>p.id===id);
       
       cb(product);
     })
   
-  */
+  
   //FOR DB
   return db.execute('SELECT * FROM products WHERE products.id=?',[id])
 
   }
 };
+*/
