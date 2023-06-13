@@ -14,12 +14,21 @@ exports.postAddProduct = (req, res, next) => {
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
+  //Magic Association
+  req.user.createProduct({
+    title: title,
+    price: price,
+    imageUrl: imageUrl,
+    description: description,
+    })/*
   Product.create({
     title: title,
     price: price,
     imageUrl: imageUrl,
-    description: description}
-  ) 
+    description: description,
+    //userId: req.user.id
+  }
+  )  */
   .then((result)=>{
 
   console.log('Created Product');
@@ -43,8 +52,10 @@ exports.getEditProduct = (req, res, next) => {
     return res.redirect('/');
   }
   const prodId = req.params.productId;
-  Product.findByPk(prodId)
-  .then( product => {
+  req.user.getProducts({where:{id:prodId}})
+  //Product.findByPk(prodId)
+  .then( products => {
+    const product=products[0];
     if (!product) {
       return res.redirect('/');
     }
@@ -66,6 +77,7 @@ exports.postEditProduct=(req,res,next)=>{
   const updatePrice=req.body.price;
 
   const updateDesc=req.body.description;
+  
   Product.findByPk(prodId)
   .then(product => {
     product.title = updateTitle;
@@ -108,7 +120,8 @@ exports.getProducts = (req, res, next) => {
   })
   .catch(err=>console.log(err));
   */
-  Product.findAll()
+  req.user.getProducts()
+  //Product.findAll()
   .then(products=>{
     res.render('admin/products', {
       prods: products,
